@@ -52,7 +52,7 @@ module.exports.extended =[
 		optionList: [
 			{
 				name: 'function',
-				description: 'The Lambda function to work on. -f or --function is usually optional (install being a major exception).',
+				description: 'The Lambda function to work on. -f or --function is usually optional (install being a major exception). Multiple functions can be separated by commas (but no spaces). In most cases, the keyword ALL (in all caps) can be replaced by a function name to run all functions.',
 				type: String,
 				alias: 'f'
 			},
