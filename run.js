@@ -1,6 +1,7 @@
 var _ = require('lodash');
 var commandLineArgs = require('command-line-args');
 var fs = require('graceful-fs');
+var configReader = require('config-reader');
 
 // Command Line Option Definitions
 var optionDefinitions = [
@@ -21,42 +22,40 @@ var optionDefinitions = [
 	}
 	];
 
+var defaultEvent = {};
 
-var actualFunctionRun = function(functionPath, consoleLogger){
+module.exports.runFunctionOnly = function(functionPath, lambdaInvoke, event){
 
-};
+	var lbdModule = require(functionPath);
+	return lbdModule[lambdaInvoke](event, null);
+
+}
 
 module.exports.runFunction = function (dirName, argv){
-	var logPath;
-	var functionNames =[];
+	var functionName;
 	var argumentSet = commandLineArgs(optionDefinitions, argv);
+	var event = defaultEvent;
 
-
+	// Get the function name.
 	if (argumentSet.function){
-		functionNames = argumentSet.function.split(',');
+		functionName = argumentSet.function;
 	}
 	else if (!argv[0].includes('-')){
-		functionNames = argv[0].split(',');
+		functionName = argv[0];
 	}
 
 
 	if (argumentSet.event){
 		fs.stat(dirName.concat('/').concat(argumentSet.event), function(err, stats){
 			if(!err){
-
+				event = require(dirName.concat('/').concat(argumentSet.event));
 			}
 			else return "ERROR - File not found or access not available.";
 		});
 	}
 
-	if (argumentSet.log){
-		newLog = function(){
-			fs.appendFile(dirName.concat('/').concat(argumentSet.log), 'data to append', function (err){
-					return "ERROR - File not found or access not available."; 
-			}
-		};
-		return;
-	}
-	return "Bad outcome.";
+	functionPath = dirName.concat('/').concat(functionName);
+
+	return functionPath;
 
 };
