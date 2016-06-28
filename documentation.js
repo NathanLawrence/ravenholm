@@ -17,7 +17,7 @@ module.exports.intro = [
 			'$ raven [bold]{init}',
 			'$ raven [bold]{new} [[bold]{-f}] [underline]{function}',
 			'$ raven [bold]{install} [underline]{npm-package} [[bold]{--save}, [bold]{--save-dev}, [bold]{-f} [underline]{function}]',
-			'$ raven [bold]{run} [[bold]{[-f]} [underline]{function}]',
+			'$ raven [bold]{run} [underline]{function}]',
 			'$ raven [bold]{test} [[bold]{[-f]} [underline]{function}]',
 			'$ raven [bold]{build} [bold]{[-f]} [underline]{function} [[bold]{-d} [underline]{destination}]',
 			'$ raven [bold]{ship} [bold]{[-f]} [underline]{function} [[bold]{--profile} [underline]{aws-config-profile}]',
@@ -60,12 +60,6 @@ module.exports.extended =[
 				name: 'profile',
 				description: 'The AWS profile to ship using. Defined in [bold]{~/.aws/credentials}, most easily by using the AWS CLI.',
 				type: String
-			},
-			{
-				name: 'log',
-				description: 'The name of a log file to pipe all console.log() statements from the Lambda to.',
-				typeLabel: '[underline]{file}',
-				alias: 'l'
 			},
 			{
 				name: 'destination',

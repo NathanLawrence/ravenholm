@@ -11,11 +11,6 @@ var optionDefinitions = [
 		type: String
 	},
 	{
-		name:'log',
-		alias: 'l',
-		type: String
-	},
-	{
 		name:'event',
 		alias: 'e',
 		type: String
