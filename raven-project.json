@@ -1,16 +1,20 @@
 {
+  "name": "ravenholm",
+  "description": "Fast and easy local testing and packaging for AWS Lambda functions written in Node.js.",
+  "author": "Nathan Lawrence (nathan@nathanlawrence.org)",
   "handler-name": "handler",
   "default-event": {
     "foobar": "Hello, World!"
   },
-  "name": "ravenholm",
-  "version": "1.0.0",
-  "description": "Fast and easy local testing and packaging for AWS Lambda functions written in Node.js.",
+  "build-ignore": [
+    "test",
+    "raven.json"
+  ],
+  "aws-profile-name": "default",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NathanLawrence/ravenholm.git"
   },
-  "author": "Nathan Lawrence (nathan@nathanlawrence.org)",
   "bugs": {
     "url": "https://github.com/NathanLawrence/ravenholm/issues"
   },

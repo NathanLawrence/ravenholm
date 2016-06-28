@@ -2,6 +2,7 @@ var _ = require('lodash');
 var getUsage = require('command-line-usage');
 var commandLineCommands = require('command-line-commands');
 var run = require('./run');
+var initMethods = require('./init');
 
 // Command documentation
 var documentation = require('./documentation');
@@ -14,7 +15,7 @@ var badX = '\u2718';
 var neutralQ = '\u2731';
 
 // Command and argument setup.
-var validCommands = [null, 'install', 'run', 'test', 'build', 'ship', 'deploy', 'help'];
+var validCommands = [null, 'install', 'run', 'test', 'build', 'ship', 'deploy', 'help', 'init', 'new'];
 
 // The actual first thing that executes. 
 // Checks if this was called by itself or not.
@@ -35,6 +36,9 @@ function main(){
 			break;
 		case 'run':
 			console.log(run.runFunction(process.cwd(), commandLineResponse.argv));
+			break;
+		case 'init':
+			initMethods.generateGlobalConfig(process.cwd());
 			break;
 		default:
 			console.log(getUsage(documentation.intro));

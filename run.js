@@ -1,7 +1,7 @@
 var _ = require('lodash');
 var commandLineArgs = require('command-line-args');
 var fs = require('graceful-fs');
-var configReader = require('config-reader');
+var configReader = require('./config-reader');
 
 // Command Line Option Definitions
 var optionDefinitions = [
