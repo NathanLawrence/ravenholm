@@ -2,6 +2,7 @@ var _ = require('lodash');
 var commandLineArgs = require('command-line-args');
 var fs = require('graceful-fs');
 var configReader = require('./config-reader');
+var contextLib = require('./contextlib');
 
 // Command Line Option Definitions
 var optionDefinitions = [
@@ -19,10 +20,10 @@ var optionDefinitions = [
 
 var defaultEvent = {};
 
-module.exports.runFunctionOnly = function(functionPath, lambdaInvoke, event){
+module.exports.runFunctionOnly = function(functionPath, lambdaInvoke, event, context){
 
 	var lbdModule = require(functionPath);
-	return lbdModule[lambdaInvoke](event, null);
+	return lbdModule[lambdaInvoke](event, context);
 
 }
 
@@ -51,6 +52,9 @@ module.exports.runFunction = function (dirName, argv){
 
 	functionPath = dirName.concat('/').concat(functionName);
 
-	return functionPath;
+	handlerName = configReader.readConfig(dirName, functionName, 'handler-name');
+
+
+	return module.exports.runFunctionOnly(functionPath, handlerName, {}, new contextLib.consoleLogContext());
 
 };

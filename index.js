@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var _ = require('lodash');
 var getUsage = require('command-line-usage');
 var commandLineCommands = require('command-line-commands');
@@ -35,7 +36,7 @@ function main(){
 			console.log(getUsage(documentation.intro.concat(documentation.extended)));
 			break;
 		case 'run':
-			console.log(run.runFunction(process.cwd(), commandLineResponse.argv));
+			run.runFunction(process.cwd(), commandLineResponse.argv);
 			break;
 		case 'init':
 			initMethods.generateGlobalConfig(process.cwd());
